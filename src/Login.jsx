@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Lock, Eye, EyeOff } from 'lucide-react';
+import { User, Key, Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './login.style.css';
 import logo from './logo.png';
@@ -24,7 +24,9 @@ const Login = () => {
         const newErrors = {};
         if (!formData.email) newErrors.email = 'E-mail';
         if (!formData.password) newErrors.password = 'Senha';
-        return newErrors;
+        if (!formData.password) newErrors.password = 'Preencha a senha';
+        if (formData.password.length < 6) newErrors.password = 'Mínimo 6 caracteres';
+    return newErrors;
     };
 
     const handleSubmit = (e) => {
@@ -65,7 +67,7 @@ const Login = () => {
 
                     <div className="input">
                         <div className="icons">
-                            <Lock size={18} color="#888" />
+                            <Key size={18} color="#888" />
                         </div>
                         <input
                             type={showPassword ? "text" : "password"}
