@@ -65,7 +65,7 @@ const Cadastro = () => {
                         <input
                             type="text"
                             name="matricula"
-                            placeholder="Matrícula ou Usuário"
+                            placeholder="E-mail"
                             value={formData.matricula}
                             onChange={handleChange}
                             className={errors.matricula ? 'input-field error' : 'input-field'}
@@ -80,7 +80,7 @@ const Cadastro = () => {
                         <input
                             type={showPassword ? "text" : "password"}
                             name="password"
-                            placeholder="Sua senha"
+                            placeholder="Senha"
                             value={formData.password}
                             onChange={handleChange}
                             className={errors.password ? 'input-field error' : 'input-field'}
