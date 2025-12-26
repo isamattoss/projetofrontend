@@ -102,7 +102,7 @@ const Cadastro = () => {
                         <input
                             type={showConfirmPassword ? "text" : "password"}
                             name="confirmPassword"
-                            placeholder="Confirme sua senha"
+                            placeholder="Confirme a senha"
                             value={formData.confirmPassword}
                             onChange={handleChange}
                             className={errors.confirmPassword ? 'input-field error' : 'input-field'}
