@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Lock, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { User, Key, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './cadastro.style.css';
 import logo from './logo.png';
@@ -75,7 +75,7 @@ const Cadastro = () => {
 
                     <div className="input-container">
                         <div className="icons">
-                            <Lock size={18} color="#888" />
+                            <Key size={18} color="#888" />
                         </div>
                         <input
                             type={showPassword ? "text" : "password"}
@@ -97,7 +97,7 @@ const Cadastro = () => {
 
                     <div className="input-container">
                         <div className="icons">
-                            <Lock size={18} color="#888" />
+                            <Key size={18} color="#888" />
                         </div>
                         <input
                             type={showConfirmPassword ? "text" : "password"}
