@@ -26,7 +26,14 @@ const Cadastro = () => {
 
     const validate = () => {
         const newErrors = {}; //verificação
-        if (!formData.matricula) newErrors.matricula = 'Preencha este campo';
+        if (!formData.matricula) {
+        newErrors.matricula = 'Preencha este campo';
+    } else {
+        const emailForm= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailForm.test(formData.matricula)) {
+            newErrors.matricula = 'Insira um e-mail válido';
+        }
+    }
         if (!formData.password) newErrors.password = 'Preencha a senha';
         if (formData.password.length < 6) newErrors.password = 'Mínimo 6 caracteres';
         if (formData.password !== formData.confirmPassword) {
