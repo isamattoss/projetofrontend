@@ -1,141 +1,211 @@
 :root {
-    --primary-cyan: #17aabf;
-    --dark-blue: #0e3b6e;
-    --bg-soft-blue: #eef2f5;
-    --error-red: #d32f2f;
+    --primary-blue: #1e40af;
+    --primary-light: #3b82f6;
+    --cyan-accent: #0ea5e9;
+    --cyan-light: #38bdf8;
+    --bg-main: #f0f9ff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --border-color: #cbd5e1;
+    --error-red: #ef4444;
     --white: #ffffff;
 }
 
-.login {
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    font-family: "Roboto", sans-serif;
-    /* Added background here since we removed it from body */
-    background: linear-gradient(135deg, var(--dark-blue) 0%, #0088cc 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-light) 100%);
 }
 
-.card {
-    background: rgba(255, 255, 255, 0.98);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+.login-card {
+    background: var(--white);
+    padding: 48px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     width: 90%;
-    max-width: 400px;
+    max-width: 440px;
     text-align: center;
 }
 
-.header {
+.login-header {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 }
 
-.logo {
+.login-logo {
     width: auto;
-    max-width: 260px;
+    max-width: 240px;
     height: auto;
 }
 
-.titulo {
-    color: var(--dark-blue);
-    margin-bottom: 25px;
-    font-size: 30px;
+.login-titulo {
+    color: var(--primary-blue);
+    margin-bottom: 28px;
+    font-size: 28px;
+    font-weight: 700;
 }
 
-.form {
+.login-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
-.input {
+.login-input-group {
     position: relative;
     text-align: left;
 }
 
-.icons {
+.login-input-icon {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 45px;
-    height: 45px;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: 1px solid #ddd;
+    z-index: 1;
+    pointer-events: none;
+    color: var(--text-secondary);
 }
 
-.input-field {
+.login-input-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.login-input-field {
     width: 100%;
-    height: 45px;
-    padding: 10px 45px 10px 55px;
-    border: 1px solid rgba(19, 121, 137, 0.2);
-    border-radius: 6px;
-    background: var(--bg-soft-blue);
-    font-size: 16px;
-    outline: none;
-    color: #333;
-}
-
-.input-field:focus {
-    border-color: var(--primary-cyan);
+    height: 50px;
+    padding: 12px 50px 12px 48px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
     background: var(--white);
-}
-
-.senha {
-    text-align: right;
-    margin-top: -5px;
-    margin-bottom: 10px;
-}
-
-.senha a {
     font-size: 15px;
-    color: var(--primary-cyan);
+    font-weight: 500;
+    outline: none;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.login-input-field::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+.login-input-field:hover {
+    border-color: var(--text-secondary);
+}
+
+.login-input-field:focus {
+    border-color: var(--cyan-accent);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.login-input-field:focus~.login-input-icon {
+    color: var(--cyan-accent);
+}
+
+.login-input-field.error {
+    border-color: var(--error-red);
+}
+
+.mensagem-erro {
+    color: var(--error-red);
+    font-size: 13px;
+    margin-top: 6px;
+    display: block;
+    text-align: left;
+    font-weight: 500;
+}
+
+.login-forgot-password {
+    text-align: right;
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+.login-forgot-password a {
+    font-size: 14px;
+    color: var(--cyan-accent);
     text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
 }
 
-.senha a:hover {
-    color: #138e9f;
+.login-forgot-password a:hover {
+    color: var(--cyan-light);
 }
 
-.botao {
-    background-color: var(--primary-cyan);
+.login-button {
+    background: linear-gradient(135deg, var(--cyan-accent), var(--cyan-light));
     color: white;
     padding: 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    margin-top: 8px;
 }
 
-.botao:hover {
-    background-color: #138e9f;
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
 }
 
-.rodape {
-    margin-top: 25px;
-    font-size: 16px;
-    color: #666;
+.login-button:active {
+    transform: translateY(0);
 }
 
-.rodape a {
-    color: var(--primary-cyan);
+.login-footer {
+    margin-top: 28px;
+    font-size: 15px;
+    color: var(--text-secondary);
+}
+
+.login-footer a {
+    color: var(--cyan-accent);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
+    transition: color 0.2s ease;
 }
 
-.olho {
+.login-footer a:hover {
+    color: var(--cyan-light);
+}
+
+.login-eye-button {
     position: absolute;
-    right: 10px;
+    right: 14px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+    color: var(--text-secondary);
+}
+
+.login-eye-button:hover {
+    opacity: 0.7;
+}
+
+.login-eye-button svg {
+    width: 20px;
+    height: 20px;
 }

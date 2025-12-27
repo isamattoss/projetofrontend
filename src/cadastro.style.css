@@ -1,177 +1,214 @@
 :root {
-  --primary-cyan: #17aabf;
-  --dark-blue: #0e3b6e;
-  --bg-soft-blue: #eef2f5;
-  --error-red: #d32f2f;
+  --primary-blue: #1e40af;
+  --primary-light: #3b82f6;
+  --cyan-accent: #0ea5e9;
+  --cyan-light: #38bdf8;
+  --bg-main: #f0f9ff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: #cbd5e1;
+  --error-red: #ef4444;
   --white: #ffffff;
 }
 
-.cadastro {
+.cadastro-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  /* Changed to min-height for safety */
-  font-family: "Roboto", sans-serif;
-  /* Added background here since we removed it from body */
-  background: linear-gradient(135deg, var(--dark-blue) 0%, #0088cc 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-light) 100%);
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+.cadastro-card {
+  background: var(--white);
+  padding: 48px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
   text-align: center;
 }
 
-.header {
+.cadastro-header {
   position: relative;
   width: 100%;
-  margin-bottom: 0px;
+  margin-bottom: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
 }
 
-.voltar {
+.cadastro-voltar {
   position: absolute;
   left: -20px;
-  bottom: -25px;
-  top: 25%;
+  top: 50%;
   transform: translateY(-50%);
-  color: var(--dark-blue);
-  padding: 5px;
-  padding-bottom: 20px;
+  color: var(--text-secondary);
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 }
 
-.voltar:hover {
-  color: var(--primary-cyan);
+.cadastro-voltar:hover {
+  color: var(--cyan-accent);
+  background: var(--bg-main);
 }
 
-.logo {
-  width: 100%;
+.cadastro-logo {
+  width: auto;
+  max-width: 240px;
   height: auto;
-  max-width: 290px;
-  object-fit: contain;
-  display: block;
 }
 
-.criar {
-  color: var(--dark-blue);
-  margin-bottom: 25px;
-  font-size: 30px;
+.cadastro-titulo {
+  color: var(--primary-blue);
+  margin-bottom: 28px;
+  font-size: 28px;
+  font-weight: 700;
 }
 
-.form {
+.cadastro-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
-.input-container {
+.cadastro-input-group {
   position: relative;
   text-align: left;
 }
 
-.icons {
+.cadastro-input-icon {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 45px;
-  height: 45px;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid #ddd;
-  z-index: 2;
+  z-index: 1;
+  pointer-events: none;
+  color: var(--text-secondary);
 }
 
-.input-field {
+.cadastro-input-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.cadastro-input-field {
   width: 100%;
-  height: 45px;
-  padding: 10px 45px 10px 55px;
-  border: 1px solid rgba(19, 121, 137, 0.3);
-  border-radius: 6px;
-  background: var(--bg-soft-blue);
-  font-size: 20px;
-  outline: none;
-  transition: all 0.2s;
-  color: #333;
-}
-
-.input-field:focus {
-  border-color: var(--primary-cyan);
+  height: 50px;
+  padding: 12px 50px 12px 48px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
   background: var(--white);
-  box-shadow: 0 0 5px rgba(23, 170, 191, 0.3);
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
 }
 
-.input-field.error {
+.cadastro-input-field::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.cadastro-input-field:hover {
+  border-color: var(--text-secondary);
+}
+
+.cadastro-input-field:focus {
+  border-color: var(--cyan-accent);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.cadastro-input-field:focus~.cadastro-input-icon {
+  color: var(--cyan-accent);
+}
+
+.cadastro-input-field.error {
   border-color: var(--error-red);
-  background: #fff5f5;
 }
 
 .mensagem-erro {
   color: var(--error-red);
-  font-size: 0.75rem;
-  margin-top: 4px;
+  font-size: 13px;
+  margin-top: 6px;
   display: block;
+  text-align: left;
+  font-weight: 500;
 }
 
-.cadastrar {
-  background-color: var(--primary-cyan);
+.cadastro-button {
+  background: linear-gradient(135deg, var(--cyan-accent), var(--cyan-light));
   color: white;
   padding: 14px;
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.1s, background 0.2s;
-  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  margin-top: 8px;
 }
 
-.cadastrar:hover {
-  background-color: #138e9f;
-  transform: translateY(-1px);
+.cadastro-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
 }
 
-.cadastrar:active {
+.cadastro-button:active {
   transform: translateY(0);
 }
 
-.rodape {
-  margin-top: 25px;
-  font-size: 20px;
-  color: #666;
+.cadastro-footer {
+  margin-top: 28px;
+  font-size: 15px;
+  color: var(--text-secondary);
 }
 
-.rodape a {
-  color: var(--primary-cyan);
+.cadastro-footer a {
+  color: var(--cyan-accent);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
+  transition: color 0.2s ease;
 }
 
-.rodape a:hover {
-  color: #138e9f;
+.cadastro-footer a:hover {
+  color: var(--cyan-light);
 }
 
-.olho {
+.cadastro-eye-button {
   position: absolute;
-  right: 10px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
-  z-index: 3;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+  color: var(--text-secondary);
+}
+
+.cadastro-eye-button:hover {
+  opacity: 0.7;
+}
+
+.cadastro-eye-button svg {
+  width: 20px;
+  height: 20px;
 }

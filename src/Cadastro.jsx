@@ -13,7 +13,7 @@ const Cadastro = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
     const [errors, setErrors] = useState({}); //armazena os erros
 
     const handleChange = (e) => {
@@ -27,13 +27,13 @@ const Cadastro = () => {
     const validate = () => {
         const newErrors = {}; //verificação
         if (!formData.matricula) {
-        newErrors.matricula = 'Preencha este campo';
-    } else {
-        const emailForm= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailForm.test(formData.matricula)) {
-            newErrors.matricula = 'Insira um e-mail válido';
+            newErrors.matricula = 'Preencha este campo';
+        } else {
+            const emailForm = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailForm.test(formData.matricula)) {
+                newErrors.matricula = 'Insira um e-mail válido';
+            }
         }
-    }
         if (!formData.password) newErrors.password = 'Preencha a senha';
         if (formData.password.length < 6) newErrors.password = 'Mínimo 6 caracteres';
         if (formData.password !== formData.confirmPassword) {
@@ -53,21 +53,21 @@ const Cadastro = () => {
     };
 
     return (
-        <div className="cadastro">
-            <div className="card">
-                <header className="header">
-                    <Link to="/login" className="voltar">
+        <div className="cadastro-container">
+            <div className="cadastro-card">
+                <header className="cadastro-header">
+                    <Link to="/login" className="cadastro-voltar">
                         <ArrowLeft size={28} />
                     </Link>
-                       <img src={logo} alt="Logo Revisão Online" className="logo" />
+                    <img src={logo} alt="Logo Revisão Online" className="cadastro-logo" />
                 </header>
 
-                <h2 className="criar">Cadastre-se</h2>
+                <h2 className="cadastro-titulo">Cadastre-se</h2>
 
-                <form onSubmit={handleSubmit} className="form">
-                    <div className="input-container">
-                        <div className="icons">
-                            <User size={18} color="#888" />
+                <form onSubmit={handleSubmit} className="cadastro-form">
+                    <div className="cadastro-input-group">
+                        <div className="cadastro-input-icon">
+                            <User size={18} />
                         </div>
                         <input
                             type="text"
@@ -75,14 +75,14 @@ const Cadastro = () => {
                             placeholder="E-mail"
                             value={formData.matricula}
                             onChange={handleChange}
-                            className={errors.matricula ? 'input-field error' : 'input-field'}
+                            className={errors.matricula ? 'cadastro-input-field error' : 'cadastro-input-field'}
                         />
                         {errors.matricula && <span className="mensagem-erro">{errors.matricula}</span>}
                     </div>
 
-                    <div className="input-container">
-                        <div className="icons">
-                            <Key size={18} color="#888" />
+                    <div className="cadastro-input-group">
+                        <div className="cadastro-input-icon">
+                            <Key size={18} />
                         </div>
                         <input
                             type={showPassword ? "text" : "password"}
@@ -90,21 +90,21 @@ const Cadastro = () => {
                             placeholder="Senha"
                             value={formData.password}
                             onChange={handleChange}
-                            className={errors.password ? 'input-field error' : 'input-field'}
+                            className={errors.password ? 'cadastro-input-field error' : 'cadastro-input-field'}
                         />
-                        <button 
-                            type="button" 
-                            className="olho"
+                        <button
+                            type="button"
+                            className="cadastro-eye-button"
                             onClick={() => setShowPassword(!showPassword)}
                         >
-                            {showPassword ? <EyeOff size={20} color="#888" /> : <Eye size={20} color="#888" />}
+                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>
                         {errors.password && <span className="mensagem-erro">{errors.password}</span>}
                     </div>
 
-                    <div className="input-container">
-                        <div className="icons">
-                            <Key size={18} color="#888" />
+                    <div className="cadastro-input-group">
+                        <div className="cadastro-input-icon">
+                            <Key size={18} />
                         </div>
                         <input
                             type={showConfirmPassword ? "text" : "password"}
@@ -112,24 +112,24 @@ const Cadastro = () => {
                             placeholder="Confirme a senha"
                             value={formData.confirmPassword}
                             onChange={handleChange}
-                            className={errors.confirmPassword ? 'input-field error' : 'input-field'}
+                            className={errors.confirmPassword ? 'cadastro-input-field error' : 'cadastro-input-field'}
                         />
-                        <button 
-                            type="button" 
-                            className="olho"
+                        <button
+                            type="button"
+                            className="cadastro-eye-button"
                             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                         >
-                            {showConfirmPassword ? <EyeOff size={20} color="#888" /> : <Eye size={20} color="#888" />}
+                            {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>
                         {errors.confirmPassword && <span className="mensagem-erro">{errors.confirmPassword}</span>}
                     </div>
 
-                    <button type="submit" className="cadastrar">
+                    <button type="submit" className="cadastro-button">
                         CADASTRAR
                     </button>
                 </form>
 
-                <div className="rodape">
+                <div className="cadastro-footer">
                     <p>Já tem uma conta? <Link to="/login">Clique aqui</Link></p>
                 </div>
             </div>
