@@ -1,18 +1,24 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { User, GraduationCap, Save, Home, PencilLine, Camera, ChevronDown, Check, Mail, Phone, MessagesSquare, CheckCheck, BotMessageSquare, Bell } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { User, GraduationCap, Save, Home, PencilLine, Camera, ChevronDown, Check, Mail, Phone, MessagesSquare, CheckCheck, BotMessageSquare, Bell, LogOut } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import './perfil.style.css';
 import { cursosGraduacao } from './cursos';
 import logo from './logo2.png';
 
 const Perfil = () => { //dados perfil
+    const navigate = useNavigate();
     const [perfil, setPerfil] = useState({
         nome: '',
         email: '',
         telefone: '',
         cursoSonho: ''
     });
+
+    const handleLogout = () => {
+        localStorage.removeItem('auth_token');
+        navigate('/login');
+    };
 
     const [buscaCurso, setBuscaCurso] = useState('');
     const [sugestoesCursos, setSugestoesCursos] = useState([]);
@@ -131,6 +137,10 @@ const Perfil = () => { //dados perfil
                     <div className="item clicado">
                         <User size={20} />
                         <span>Perfil</span>
+                    </div>
+                    <div className="item" onClick={handleLogout} style={{ marginTop: 'auto', marginBottom: '10px', cursor: 'pointer' }}>
+                        <LogOut size={20} />
+                        <span>Sair</span>
                     </div>
                 </nav>
 
