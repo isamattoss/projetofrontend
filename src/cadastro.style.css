@@ -11,8 +11,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  /* Changed to min-height for safety */
   font-family: "Roboto", sans-serif;
+  /* Added background here since we removed it from body */
+  background: linear-gradient(135deg, var(--dark-blue) 0%, #0088cc 100%);
 }
 
 .card {
@@ -28,7 +31,7 @@
 .header {
   position: relative;
   width: 100%;
-  margin-bottom: 0px; /* suspeito*/
+  margin-bottom: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,8 +41,8 @@
 .voltar {
   position: absolute;
   left: -20px;
-  bottom: -25px; 
-  top: 25%; /* suspeito */
+  bottom: -25px;
+  top: 25%;
   transform: translateY(-50%);
   color: var(--dark-blue);
   padding: 5px;
@@ -92,14 +95,13 @@
   width: 100%;
   height: 45px;
   padding: 10px 45px 10px 55px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(19, 121, 137, 0.3);
   border-radius: 6px;
   background: var(--bg-soft-blue);
   font-size: 20px;
   outline: none;
   transition: all 0.2s;
   color: #333;
-  border-color: rgba(19, 121, 137, 0.3);
 }
 
 .input-field:focus {
@@ -144,9 +146,8 @@
 
 .rodape {
   margin-top: 25px;
-  font-size: 0.9rem;
+  font-size: 20px;
   color: #666;
-   font-size: 20px;
 }
 
 .rodape a {
@@ -160,18 +161,17 @@
 }
 
 .olho {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    z-index: 3;
-    transition: opacity 0.2s;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  z-index: 3;
+  transition: opacity 0.2s;
 }
-

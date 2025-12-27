@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { User, Key, Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './login.style.css';
 import logo from './logo.png';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({//valores inputs
         email: '',
         password: ''
@@ -26,7 +27,7 @@ const Login = () => {
         if (!formData.password) newErrors.password = 'Senha';
         if (!formData.password) newErrors.password = 'Preencha a senha';
         if (formData.password.length < 6) newErrors.password = 'Mínimo 6 caracteres';
-    return newErrors;
+        return newErrors;
     };
 
     const handleSubmit = (e) => {
@@ -37,7 +38,8 @@ const Login = () => {
             return;
         }
         console.log('Dados de login:', formData);
-        alert('Tentativa de login realizada!');
+        // Redireciona para a página de perfil após login bem-sucedido
+        navigate('/perfil');
     };
 
     return (
@@ -77,8 +79,8 @@ const Login = () => {
                             onChange={handleChange}
                             className={errors.password ? 'input-field error' : 'input-field'}
                         />
-                        <button 
-                            type="button" 
+                        <button
+                            type="button"
                             className="olho"
                             onClick={() => setShowPassword(!showPassword)}
                         >
