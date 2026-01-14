@@ -106,11 +106,11 @@ const Perfil = () => { //dados perfil
         <div className="layout">
             <aside className="sidebar">
                 <div className="logo">
-                    <img src={logo} alt="RevisáOnline" className="logo-image" />
+                    <img src={logo} alt="RevisãoOnline" className="logo-image" />
                 </div>
 
                 <nav className="menu">
-                    <Link to="/panel" className="item">
+                    <Link to="/home" className="item">
                         <Home size={20} />
                         <span>Meu espaço</span>
                     </Link>
@@ -163,7 +163,7 @@ const Perfil = () => { //dados perfil
                         <p>Atualize seus dados pessoais e educacionais</p>
                     </div>
                     <div className="dashboard">
-                        <span>Dashboard</span> / <span className="current">Perfil</span>
+                        <span className="current">Perfil</span>
                     </div>
                 </header>
 
