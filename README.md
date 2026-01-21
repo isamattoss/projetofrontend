@@ -19,7 +19,7 @@ Mês 2: Sala de Redação
 Foco: Ação principal de estudar.
 
 Entregáveis (Git):
-[ ] Lista de Redações: Card para cada redação enviada.
+[✅] Lista de Redações: Card para cada redação enviada.
 Visual: Badge Amarelo para "Em Correção" e Verde para "Corrigida (Nota:
 920)".
 [ ] Nova Redação: Formulário com campo de Título, Tema e um Textarea grande
