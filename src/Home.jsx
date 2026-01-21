@@ -3,17 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import './home.style.css';
 import logo from './logo2.png';
 import { User, Home as HomeIcon, MessagesSquare, PencilLine, CheckCheck, BotMessageSquare, Bell, LogOut } from 'lucide-react';
-
+import { listaRedacoes } from './redacoes';
 
 const Home = () => {
     const navigate = useNavigate();
-    const [redacoes] = useState([
-    { id: 1, titulo: "Cidades Sustentáveis", tema: "Caminhos para a sustentabilidade", status: "Corrigida", nota: 920 },
-    { id: 2, titulo: "IA no Brasil", tema: "O impacto da tecnologia", status: "Em avaliação", nota: null },
-    { id: 3, titulo: "Uma mesma canção", tema: "Desafios para a valorização da herança africana no Brasil", status: "Corrigida", nota: 880 },
-    ])
+  
 
 const [perfil] = useState({ nome: "Teste Júnior" });
+const [redacoes] = useState(listaRedacoes || []);
+//consts para status
+const totalEscrita = redacoes?.filter(r => r.status === 'Em escrita').length || 0;
+const totalAvaliacao = redacoes.filter(r => r.status === 'Em avaliação').length || 0;
+const totalCorrigida = redacoes.filter(r => r.status === 'Corrigida').length || 0;
 
 const handleLogout = () => {
         localStorage.removeItem('auth_token');
@@ -80,9 +81,9 @@ const handleLogout = () => {
                         <h2><PencilLine size={20} /> Minhas redações</h2>
                     </div>
                     <div className="ops-container"></div>
-                    <button className='ops-btn'>Em escrita (0)</button>
-                    <button className='ops-btn'>Em avaliação (1)</button>
-                    <button className='ops-btn'>Corrigidas (2)</button>
+                    <button className='btn-badge-vermelho'>Em escrita ({totalEscrita})</button>
+                    <button className='btn-badge-amarelo'>Em avaliação ({totalAvaliacao})</button>
+                    <button className='btn-badge-verde'>Corrigidas ({totalCorrigida})</button>
                     <div className='pesquisa'>
                         <input type='text' placeholder="Pesquisar"/>
                     </div>

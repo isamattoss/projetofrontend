@@ -62,3 +62,217 @@
     color: var(--text-white);
     box-shadow: 0 4px 12px rgba(23, 170, 191, 0.4);
 }
+
+.conteudo{
+    padding: 20px;
+    overflow-y: auto;  /*scroll das redações home */
+}
+
+.redacoes-lista{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.redacao-item{
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border:  1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.redacao-item:hover{ 
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.redacao-header{
+    margin-bottom: 12px;
+}
+
+.redacao-header h3{
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.redacao-header p{
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.redacao-status{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.badge{
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    font-size: 15px;
+}
+
+.badge-verde{
+    color: white;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.badge-verde:hover{
+    box-shadow: 0px 4px 12px rgba(16, 185, 129, 0.4);
+    transform: scale(1.05);
+}
+
+.badge-amarelo{
+    color: white;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.badge-amarelo:hover{
+    box-shadow: 0px 4px 12px rgba(245, 158, 11, 0.4);
+    transform: scale(1.05);
+}
+
+.badge-vermelho{
+    color: white;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.badge-vermelho:hover{
+    box-shadow: 0px 4px 12px rgba(239, 68, 68, 0.4);
+    transform: scale(1.05);
+}
+
+.card-container{
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+.card-header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h2{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.ops-container{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-badge-verde{
+    color: white;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-badge-verde:hover{
+    transform: scale(1.05);
+}
+
+.btn-badge-amarelo{
+    color: white;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+}
+
+.btn-badge-amarelo:hover{
+    transform: scale(1.05);
+}
+
+.btn-badge-vermelho{
+    color: white;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-badge-vermelho:hover{
+    transform: scale(1.05);
+}
+
+.pesquisa{
+    margin-top: 20px;
+}
+
+.pesquisa input{
+    width: 100%;
+    background-color: rgb(249, 250, 255);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: black;
+    font-size: 15px;
+}
+
+.pesquisa input:focus{
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(23, 170, 191, 0.1);
+}
+
+.pesquisa input::placeholder{
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .redacoes-lista {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .ops-container {
+        flex-direction: column;
+    }
+    
+    .btn-badge-amarelo, .btn-badge-verde, .btn-badge-vermelho {
+        width: 30%;
+        padding: 10px;
+        font-size: 16px;
+    }
+}
