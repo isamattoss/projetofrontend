@@ -3,18 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import './home.style.css';
 import logo from './logo2.png';
 import { User, Home as HomeIcon, MessagesSquare, PencilLine, CheckCheck, BotMessageSquare, Bell, LogOut } from 'lucide-react';
-import { listaRedacoes } from './redacoes';
 
-const Home = () => {
+const Escreva = () => {
     const navigate = useNavigate();
   
 
 const [perfil] = useState({ nome: "Teste Júnior" });
-const [redacoes] = useState(listaRedacoes || []);
-//consts para status
-const totalEscrita = redacoes?.filter(r => r.status === 'Em escrita').length || 0;
-const totalAvaliacao = redacoes.filter(r => r.status === 'Em avaliação').length || 0;
-const totalCorrigida = redacoes.filter(r => r.status === 'Corrigida').length || 0;
 
 const handleLogout = () => {
         localStorage.removeItem('auth_token');
@@ -29,7 +23,7 @@ const handleLogout = () => {
                 </div>
 
                 <nav className="menu">
-                    <Link to="/home" className="item clicado">
+                    <Link to="/home" className="item">
                         <HomeIcon size={20} />
                         <span>Meu espaço</span>
                     </Link>
@@ -38,7 +32,7 @@ const handleLogout = () => {
                         <span>Grupos</span>
                     </div>
                     <div>
-                    <Link to="/escreva" className="item">
+                    <Link to="/escreva" className="item clicado">
                         <PencilLine size={20} />
                         <span>Escreva</span>
                     </Link>
@@ -78,37 +72,12 @@ const handleLogout = () => {
             </aside>
 
             <main className='conteudo'>
-                <div className="card-container">
-                    <div className="card-header">
-                        <h2><PencilLine size={20} /> Minhas redações</h2>
-                    </div>
-                    <div className="ops-container"></div>
-                    <button className='btn-badge-vermelho'>Em escrita ({totalEscrita})</button>
-                    <button className='btn-badge-amarelo'>Em avaliação ({totalAvaliacao})</button>
-                    <button className='btn-badge-verde'>Corrigidas ({totalCorrigida})</button>
-                    <div className='pesquisa'>
-                        <input type='text' placeholder="Pesquisar"/>
-                    </div>
-                </div>
-
-                <div className="redacoes-lista">
-                    {redacoes.map((redacao) => (
-                        <div className="redacao-item" key={redacao.id}>
-                            <div className="redacao-header">
-                                <h3>{redacao.titulo}</h3>
-                                <p>{redacao.tema}</p>
-                            </div>
-                            <div className="redacao-status">
-                                {redacao.status === 'Corrigida' ? (<span className="badge badge-verde">Corrigida (Nota: {redacao.nota}) </span>) 
-                                : redacao.status === 'Em avaliação' ? (<span className="badge badge-amarelo">Em avaliação </span>)
-                                : redacao.status === 'Em escrita' ? (<span className="badge badge-vermelho">Em escrita </span>) : null}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <h1>Escreva sua Redação</h1>
+                <p>Aqui você pode começar a escrever sua redação.</p>
+                {/* Adicione aqui o formulário ou editor de texto para a redação */}
             </main>
         </div>
     );
 }
 
-export default Home;
+export default Escreva;

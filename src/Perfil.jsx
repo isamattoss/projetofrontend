@@ -118,9 +118,11 @@ const Perfil = () => { //dados perfil
                         <MessagesSquare size={20} />
                         <span>Grupos</span>
                     </div>
-                    <div className="item">
+                    <div>
+                    <Link to="/escreva" className="item">
                         <PencilLine size={20} />
                         <span>Escreva</span>
+                     </Link>
                     </div>
                     <div className="item">
                         <CheckCheck size={20} />
