@@ -1,12 +1,11 @@
-
 import { useState, useEffect, useRef } from 'react';
-import { User, GraduationCap, Save, Home, PencilLine, Camera, ChevronDown, Check, Mail, Phone, MessagesSquare, CheckCheck, BotMessageSquare, Bell, LogOut, Trophy} from 'lucide-react';
+import { User, GraduationCap, Save, Home, PencilLine, Camera, ChevronDown, Check, Mail, Phone, MessagesSquare, CheckCheck, BotMessageSquare, Bell, LogOut, Trophy, Target, ArrowRight} from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import './perfil.style.css';
-import { cursosGraduacao } from './cursos';
+import { cursosGraduacao, cursosComNotas } from './cursos';
 import logo from './logo2.png';
 
-const Perfil = () => { //dados perfil
+const Perfil = () => {
     const navigate = useNavigate();
     const [perfil, setPerfil] = useState({
         nome: '',
@@ -23,26 +22,34 @@ const Perfil = () => { //dados perfil
     const [buscaCurso, setBuscaCurso] = useState('');
     const [sugestoesCursos, setSugestoesCursos] = useState([]);
     const [mostrarSugestoes, setMostrarSugestoes] = useState(false);
+    const [notaCorte, setNotaCorte] = useState(null);
     const foraSugestoes = useRef(null);
 
     useEffect(() => {
-        const dadosSalvos = localStorage.getItem('user_profile');//pega do navegador
+        const dadosSalvos = localStorage.getItem('user_profile');
         if (dadosSalvos) {
-            const parsed = JSON.parse(dadosSalvos);//transforma em objeto
+            const parsed = JSON.parse(dadosSalvos);
             const initialPerfil = {
                 ...parsed,
                 nome: parsed.nome || '',
                 email: parsed.email || '',
                 telefone: parsed.telefone || '',
-                cursoSonho: parsed.cursoSonho || '' //atualiza estados ou deixa vazio
+                cursoSonho: parsed.cursoSonho || ''
             };
             setPerfil(initialPerfil);
             setBuscaCurso(initialPerfil.cursoSonho);
+
+            if (initialPerfil.cursoSonho) {
+                const cursoInfo = cursosComNotas.find(c => c.curso === initialPerfil.cursoSonho);
+                if (cursoInfo) {
+                    setNotaCorte(cursoInfo.nota_corte_estimada);
+                }
+            }
         }
     }, []);
 
     useEffect(() => {
-        function handleClickOutside(event) {//fecha sugestões se foi clicado fora
+        function handleClickOutside(event) {
             if (foraSugestoes.current && !foraSugestoes.current.contains(event.target)) {
                 setMostrarSugestoes(false);
             }
@@ -53,7 +60,7 @@ const Perfil = () => { //dados perfil
         };
     }, [foraSugestoes]);
 
-    const formatPhoneNumber = (value) => {//formata número tel/whats
+    const formatPhoneNumber = (value) => {
         const numbers = value.replace(/\D/g, '');
 
         if (numbers.length <= 2) {
@@ -77,7 +84,7 @@ const Perfil = () => { //dados perfil
         }
     };
 
-    const handleCursoChange = (e) => { //cursos
+    const handleCursoChange = (e) => {
         const valor = e.target.value;
         setBuscaCurso(valor);
         setSugestoesCursos(
@@ -92,14 +99,30 @@ const Perfil = () => { //dados perfil
         setBuscaCurso(curso);
         setPerfil(prev => ({ ...prev, cursoSonho: curso }));
         setMostrarSugestoes(false);
+
+        //buscar e definir nota de corte usando cursosComNotas
+        const cursoInfo = cursosComNotas.find(c => c.curso === curso);
+        if (cursoInfo) {
+            setNotaCorte(cursoInfo.nota_corte_estimada);
+        } else {
+            setNotaCorte(null);
+        }
     };
 
-    const handleSave = (e) => { //salva dados
+    const handleSave = (e) => {
         e.preventDefault();
         const perfilAtualizado = { ...perfil, cursoSonho: buscaCurso };
         localStorage.setItem('user_profile', JSON.stringify(perfilAtualizado));
         setPerfil(perfilAtualizado);
         alert(`Dados atualizados com sucesso!`);
+    };
+    
+    const irParaMetas = () => {
+        if (notaCorte) {
+            localStorage.setItem('meta_nota_corte', notaCorte);
+            localStorage.setItem('meta_curso', buscaCurso);
+            navigate('/metas');
+        }
     };
 
     return (
@@ -119,10 +142,10 @@ const Perfil = () => { //dados perfil
                         <span>Grupos</span>
                     </div>
                     <div>
-                    <Link to="/escreva" className="item">
-                        <PencilLine size={20} />
-                        <span>Escreva</span>
-                     </Link>
+                        <Link to="/escreva" className="item">
+                            <PencilLine size={20} />
+                            <span>Escreva</span>
+                        </Link>
                     </div>
                     <div className="item">
                         <CheckCheck size={20} />
@@ -175,8 +198,6 @@ const Perfil = () => { //dados perfil
 
                 <div className="conteudos">
                     <form onSubmit={handleSave} className="form-header">
-
-
                         <div className="perfil-header">
                             <div className="foto-perfil">
                                 <div className="avatar">
@@ -200,6 +221,24 @@ const Perfil = () => { //dados perfil
                             </div>
                         </div>
 
+                        {buscaCurso && notaCorte && (
+                            <div className="card-meta" onClick={irParaMetas}>
+                                <div className="meta-conteudo">
+                                    <div className="meta-icon">
+                                        <Target size={28} />
+                                    </div>
+                                    <div className="meta-info">
+                                        <h3>Sua Meta no ENEM</h3>
+                                        <p className="nota-destaque">{notaCorte} pontos</p>
+                                        <p className="curso-meta">Para {buscaCurso}</p>
+                                    </div>
+                                </div>
+                                <div className="meta-action">
+                                    <span>Definir Metas</span>
+                                    <ArrowRight size={20} />
+                                </div>
+                            </div>
+                        )}
 
                         <div className="cards">
                             <h3>Informações Pessoais</h3>
@@ -220,7 +259,6 @@ const Perfil = () => { //dados perfil
                                     </div>
                                 </div>
 
-                                {/* Email e Telefone lado a lado com alturas iguais */}
                                 <div className="form-group">
                                     <label>E-mail</label>
                                     <div className="input-icon-wrapper">
@@ -251,7 +289,6 @@ const Perfil = () => { //dados perfil
                                     </div>
                                 </div>
 
-                                {/* Curso ocupa largura total */}
                                 <div className="form-group" ref={foraSugestoes}>
                                     <label>Curso de Interesse (Meta)</label>
                                     <div className="container">
@@ -270,22 +307,29 @@ const Perfil = () => { //dados perfil
 
                                         {mostrarSugestoes && sugestoesCursos.length > 0 && (
                                             <ul className="lista-curso">
-                                                {sugestoesCursos.map((curso, index) => (
-                                                    <li
-                                                        key={index}
-                                                        onClick={() => selecionarCurso(curso)}
-                                                        className={curso === perfil.cursoSonho ? 'selected' : ''}
-                                                    >
-                                                        {curso}
-                                                        {curso === perfil.cursoSonho && <Check size={16} />}
-                                                    </li>
-                                                ))}
+                                                {sugestoesCursos.map((curso, index) => {
+                                                    const cursoInfo = cursosComNotas.find(c => c.curso === curso);
+                                                    return (
+                                                        <li
+                                                            key={index}
+                                                            onClick={() => selecionarCurso(curso)}
+                                                            className={curso === perfil.cursoSonho ? 'selected' : ''}
+                                                        >
+                                                            <span className="curso-nome">{curso}</span>
+                                                            {cursoInfo && (
+                                                                <span className="nota-corte-badge">
+                                                                    {cursoInfo.nota_corte_estimada}
+                                                                </span>
+                                                            )}
+                                                            {curso === perfil.cursoSonho && <Check size={16} />}
+                                                        </li>
+                                                    );
+                                                })}
                                             </ul>
                                         )}
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div className="action-bar">
@@ -294,7 +338,6 @@ const Perfil = () => { //dados perfil
                                 <span>SALVAR DADOS</span>
                             </button>
                         </div>
-
                     </form>
                 </div>
             </main>
