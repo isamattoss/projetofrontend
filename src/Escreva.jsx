@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './home.style.css';
+import './escreva.style.css';
+import { temasRedacao } from './temas';
 import logo from './logo2.png';
 import { User, Home as HomeIcon, MessagesSquare, PencilLine, CheckCheck, BotMessageSquare, Bell, LogOut } from 'lucide-react';
 
 const Escreva = () => {
     const navigate = useNavigate();
-  
-
-const [perfil] = useState({ nome: "Teste Júnior" });
+    const [perfil] = useState({ nome: "Teste Júnior" });
+    const [contadorCaracteres, setContadorCaracteres] = useState(0);
+    const [contadorPalavras, setContadorPalavras] = useState(0);
 
 const handleLogout = () => {
         localStorage.removeItem('auth_token');
         navigate('/login');
     };
+
+const atualizarContadores = (texto) => {
+    setContadorCaracteres(texto.length);
+    const palavras = texto.trim().split(/\s+/).filter(palavra => palavra.length > 0);
+    setContadorPalavras(palavras.length);
+};
+
 
  return (
         <div className="layout">
@@ -72,9 +80,44 @@ const handleLogout = () => {
             </aside>
 
             <main className='conteudo'>
-                <h1>Escreva sua Redação</h1>
-                <p>Aqui você pode começar a escrever sua redação.</p>
-                {/* Adicione aqui o formulário ou editor de texto para a redação */}
+                <div className = "form-redacao-container">
+                <h2 className='nome-escreva'>Escreva sua Redação</h2>
+                    <form className='form-redacao'>
+
+                        <div className='form-itens'>
+                            <label htmlFor='tema' className='form-label'>Tema da Redação </label>
+                            <select id='tema' className='form-select' defaultValue="">
+                                <option value="" disabled> Selecione o tema de escrita da sua redação!</option>
+                                {temasRedacao.map((item, index) => (
+                                    <option key={index} value={item.tema}>{item.tema}</option>
+                                ))}
+                            </select>
+                        </div>
+                        
+                        <div className='form-itens'>
+                             <label htmlFor='titulo' className='form-label'>Título da Redação (opcional)</label>
+                             <input type='text' id='titulo' className='form-input' placeholder='Digite o título da sua redação'/>
+                        </div>
+
+                        <div className='form-itens'>
+                            <label htmlFor='redacao' className='form-label'>Redação</label>
+                            <div className='edicao'>
+                                <span className='edicao-linhas'>Mínimo: 7 linhas | Máximo: 30 linhas</span>
+                            </div>
+                            <textarea id='redacao' className='form-texto' placeholder='Escreva sua redação aqui...' rows="30" onChange={(e) => atualizarContadores(e.target.value)}></textarea>
+                            <div className='contador'>
+                                <span className='contador-item'> 
+                                    Caracteres: {contadorCaracteres} | Palavras: {contadorPalavras}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div className='form-botoes'>
+                            <button type='button' className='btn-salvar'>Salvar Rascunho</button>
+                            <button type='submit' className='btn-enviar'>Enviar Redação</button>
+                        </div>
+                    </form>
+                </div>
             </main>
         </div>
     );
