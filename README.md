@@ -37,7 +37,7 @@ Entregáveis (Git):
 [ ] Card de Meta: Mostrar visualmente o quão longe ele está da nota de corte (Ex:
 Uma barra de progresso "850/900").
 [ ] Responsividade: Garantir que o aluno consiga ver a nota pelo celular.
-[ ] Deploy na Vercel: Link funcional.
+[✅ ] Deploy na Vercel: Link funcional. --> projetofrontend-ivory.vercel.app
 
 Feito por Isadora Paiva de Mattos
 
