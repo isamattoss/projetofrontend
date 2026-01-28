@@ -99,7 +99,7 @@
     width: 100%;
     padding: 12px 16px;
     font-size: 16px;
-    color: #333;
+    color: #666;
     background-color: white;
     border-radius: 8px;
     border: 2px solid #e0e6ed;
@@ -201,13 +201,12 @@
 .btn-enviar{
      background: var(--primary-blue);
     color: white;
-    box-shadow: 0 4px 12px rgba(23, 170, 191, 0.3);
 }
 
 .btn-enviar:hover{
     background: var(--cyan-accent, #17aabf);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(23, 170, 191, 0.4);
+    border: solid 2px rgb(215, 200, 200);
+   
 }
 
 @media (max-width: 768px) {
