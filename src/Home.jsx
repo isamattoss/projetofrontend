@@ -11,15 +11,29 @@ const Home = () => {
 
 const [perfil] = useState({ nome: "Teste Júnior" });
 const [redacoes] = useState(listaRedacoes || []);
+const [filtroStatus, setFiltroStatus] = useState(null);
+const [termoBusca, setTermoBusca] = useState('');
 //consts para status
 const totalEscrita = redacoes?.filter(r => r.status === 'Em escrita').length || 0;
 const totalAvaliacao = redacoes.filter(r => r.status === 'Em avaliação').length || 0;
 const totalCorrigida = redacoes.filter(r => r.status === 'Corrigida').length || 0;
 
+const redacoesFiltradas = redacoes.filter(redacao => {
+    const matchStatus = !filtroStatus || redacao.status === filtroStatus;
+    const matchBusca = !termoBusca || 
+    redacao.titulo.toLowerCase().includes(termoBusca.toLowerCase()) ||
+    redacao.tema.toLowerCase().includes(termoBusca.toLowerCase());
+    return matchStatus && matchBusca;
+});
+
+ const handleFiltroStatus = (status) => {
+    setFiltroStatus(filtroStatus === status ? null : status);
+ }; 
+
 const handleLogout = () => {
         localStorage.removeItem('auth_token');
         navigate('/login');
-    };
+};
 
  return (
         <div className="layout">
@@ -87,16 +101,17 @@ const handleLogout = () => {
                         <h2><PencilLine size={20} /> Minhas redações</h2>
                     </div>
                     <div className="ops-container"></div>
-                    <button className='btn-badge-vermelho'>Em escrita ({totalEscrita})</button>
-                    <button className='btn-badge-amarelo'>Em avaliação ({totalAvaliacao})</button>
-                    <button className='btn-badge-verde'>Corrigidas ({totalCorrigida})</button>
+                    <button className={`btn-badge-vermelho ${filtroStatus === 'Em escrita' ? 'ativo' : ''}`} onClick={() => handleFiltroStatus('Em escrita')}>Em escrita ({totalEscrita})</button>
+                    <button className={`btn-badge-amarelo ${filtroStatus === 'Em avaliação' ? 'ativo' : ''}`} onClick={() => handleFiltroStatus('Em avaliação')}>Em avaliação ({totalAvaliacao})</button>
+                    <button className={`btn-badge-verde ${filtroStatus === 'Corrigida' ? 'ativo' : ''}`} onClick={() => handleFiltroStatus('Corrigida')}>Corrigidas ({totalCorrigida})</button>
                     <div className='pesquisa'>
-                        <input type='text' placeholder="Pesquisar"/>
+                        <input type='text' value={termoBusca} onChange={(e) => setTermoBusca(e.target.value)} placeholder="Pesquisar por título ou tema da redação..."/>
                     </div>
                 </div>
 
                 <div className="redacoes-lista">
-                    {redacoes.map((redacao) => (
+                    {redacoesFiltradas.length > 0 ? (
+                        redacoesFiltradas.map((redacao) => (
                         <div className="redacao-item" key={redacao.id}>
                             <div className="redacao-header">
                                 <h3>{redacao.titulo}</h3>
@@ -108,7 +123,12 @@ const handleLogout = () => {
                                 : redacao.status === 'Em escrita' ? (<span className="badge badge-vermelho">Em escrita </span>) : null}
                             </div>
                         </div>
-                    ))}
+                    ))
+                    ):(
+                        <div className='nenhuma-redacao'>
+                        <p>Nenhuma redação encontrada {filtroStatus && `com status ${filtroStatus}`} {termoBusca && `para "${termoBusca}"`}</p>
+                </div>
+                    )}
                 </div>
             </main>
         </div>
