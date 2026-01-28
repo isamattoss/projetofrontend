@@ -25,7 +25,7 @@ Visual: Badge Amarelo para "Em Correção" e Verde para "Corrigida (Nota:
 [✅] Nova Redação: Formulário com campo de Título, Tema e um Textarea grande
 para digitar o texto.
 [ ] Integração: Conectar com o POST /essays da API.
-[ ] Feedback Visual: Toast de sucesso ao enviar.
+[✅] Feedback Visual: Toast de sucesso ao enviar.
 
 
 Mês 3: Dashboard de Evolução

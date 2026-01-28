@@ -209,6 +209,77 @@
    
 }
 
+.toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    min-width: 320px;
+    max-width: 450px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.toast-conteudo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+}
+
+.toast-icone {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.toast-mensagem {
+    font-size: 15px;
+    font-weight: 500;
+    color: #2c3e50;
+    flex: 1;
+}
+
+.toast-progresso {
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.toast-sucesso .toast-icone {
+    background: #d4edda;
+    color: #28a745;
+}
+
+.toast-sucesso .toast-progresso {
+    background: linear-gradient(90deg, #28a745 0%, #28a745 100%);
+}
+
+.toast-erro .toast-icone {
+    background: #f8d7da;
+    color: #dc3545;
+}
+
+.toast-erro .toast-progresso {
+    background: linear-gradient(90deg, #dc3545 0%, #dc3545 100%);
+}
+
+.toast-rascunho .toast-icone {
+    background: #d1ecf1;
+    color: #17aabf;
+}
+
+.toast-rascunho .toast-progresso {
+    background: linear-gradient(90deg, #17aabf 0%, #17aabf 100%);
+}
+
+
 @media (max-width: 768px) {
     .form-redacao-container {
         padding: 20px 16px;
