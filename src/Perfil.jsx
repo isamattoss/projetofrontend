@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { User, GraduationCap, Save, Home, PencilLine, Camera, ChevronDown, Check, Mail, Phone, MessagesSquare, CheckCheck, BotMessageSquare, Bell, LogOut } from 'lucide-react';
+import { User, GraduationCap, Save, Home, PencilLine, Camera, ChevronDown, Check, Mail, Phone, MessagesSquare, CheckCheck, BotMessageSquare, Bell, LogOut, Trophy} from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import './perfil.style.css';
 import { cursosGraduacao } from './cursos';
@@ -136,6 +136,10 @@ const Perfil = () => { //dados perfil
                         <Bell size={20} />
                         <span>Notificações</span>
                     </div>
+                    <Link to="/metas" className="item">
+                        <Trophy size={20} />
+                        <span>Metas</span>
+                    </Link>
                     <div className="item clicado">
                         <User size={20} />
                         <span>Perfil</span>

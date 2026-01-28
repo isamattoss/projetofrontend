@@ -4,6 +4,7 @@ import Cadastro from './Cadastro';
 import Perfil from './Perfil';
 import Home from './Home';
 import Escreva from './Escreva';
+import Metas from './Metas';
 import PrivateRoute from './PrivateRoute';
 import './App.css';
 
@@ -32,6 +33,13 @@ function App() {
           path="/escreva"element={
             <PrivateRoute>
               <Escreva />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/metas"element={
+            <PrivateRoute>
+              <Metas />
             </PrivateRoute>
           }
         />

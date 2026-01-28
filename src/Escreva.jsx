@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './escreva.style.css';
 import { temasRedacao } from './temas';
 import logo from './logo2.png';
-import { User, Home as HomeIcon, MessagesSquare, PencilLine, CheckCheck, BotMessageSquare, Bell, LogOut, ArrowBigDown} from 'lucide-react';
+import { User, Home as HomeIcon, MessagesSquare, PencilLine, CheckCheck, BotMessageSquare, Bell, LogOut, Trophy} from 'lucide-react';
 
 const Escreva = () => {
     const navigate = useNavigate();
@@ -120,6 +120,10 @@ const handleSalvarRascunho = () => {
                         <Bell size={20} />
                         <span>Notificações</span>
                     </div>
+                        <Link to="/metas" className="item">
+                        <Trophy size={20} />
+                        <span>Metas</span>
+                        </Link>
                     <Link to="/perfil" className="item">
                         <User size={20} />
                         <span>Perfil</span>
