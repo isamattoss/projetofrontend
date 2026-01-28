@@ -77,7 +77,7 @@ const handleLogout = () => {
                 </div>
             </aside>
             <main className="main-content">
-                <h1>Metas</h1>
+                <h2>Metas</h2>
                 <p>aaaaaaaaaaaaaaa</p>
             </main>
         </div>
