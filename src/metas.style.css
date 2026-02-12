@@ -62,3 +62,268 @@
     color: var(--text-white);
     box-shadow: 0 4px 12px rgba(23, 170, 191, 0.4);
 }
+
+.conteudo{
+    padding: 20px;
+    overflow-y: auto;  
+}
+
+
+.rodape {
+    padding: 16px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rodape-fim {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+}
+
+.avatar-rodape {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--cyan-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.info-rodape {
+    flex: 1;
+}
+
+.nome-rodape {
+    color: var(--text-white);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 32px 48px;
+    overflow-y: auto;
+}
+
+.metas-header {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metas-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+}
+
+.metas-header p {
+    font-size: 16px;
+    color: #64748b;
+    margin: 0;
+}
+
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.status-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.status-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.status-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.status-icon.media {
+    background: linear-gradient(135deg, #3868d6 0%, #31099d 100%);
+}
+
+.status-icon.melhor {
+    background: linear-gradient(135deg, #3868d6 0%, #31099d 100%);
+}
+
+.status-icon.ultima {
+    background: linear-gradient(135deg, #3868d6 0%, #31099d 100%);
+}
+
+.status-icon.total {
+    background: linear-gradient(135deg, #3868d6 0%, #31099d 100%);
+}
+
+.status-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.status-label {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.status-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.stat-icon.media {
+    background: linear-gradient(135deg, #3868d6 0%, #31099d 100%);
+}
+
+.stat-icon.melhor {
+    background: linear-gradient(135deg, #3868d6 0%, #31099d 100%);
+}
+
+.stat-icon.ultima {
+    background: linear-gradient(135deg, #3868d6 0%, #31099d 100%);
+
+.stat-icon.total {
+    background: linear-gradient(135deg, #3868d6 0%, #31099d 100%);
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 24px 20px;
+    }
+
+    .stats-grid,
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metas-header h2 {
+        font-size: 24px;
+    }
+
+    .sidebar {
+        width: 240px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        z-index: 1000;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 8px;
+    }
+
+    .item {
+        flex-direction: column;
+        padding: 8px;
+        font-size: 12px;
+        min-width: 70px;
+    }
+
+    .item span {
+        font-size: 11px;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .rodape {
+        display: none;
+    }
+}
+}

@@ -4,6 +4,7 @@ import './metas.style.css';
 import logo from './logo2.png';
 import { User, Home as HomeIcon, MessagesSquare, PencilLine, CheckCheck, BotMessageSquare, Bell, LogOut, Trophy } from 'lucide-react';
 import { listaRedacoes } from './redacoes';
+import Grafico from './grafico';
 
 const Metas = () => {
     const navigate = useNavigate();
@@ -16,6 +17,11 @@ const handleLogout = () => {
         localStorage.removeItem('auth_token');
         navigate('/login');
     };
+
+const redacoesCorrigidas = redacoes.filter(r => r.status === 'Corrigida' && r.nota !== null);
+const mediaNotas = redacoesCorrigidas.length > 0 ? Math.round(redacoesCorrigidas.reduce((acc, r) => acc + r.nota, 0) / redacoesCorrigidas.length) : 0;
+const melhorNota = redacoesCorrigidas.length > 0 ? Math.max(...redacoesCorrigidas.map(r => r.nota)) : 0;
+const ultimaNota = redacoesCorrigidas.length > 0 ? redacoesCorrigidas.sort((a,b) => b.id - a.id)[0].nota : 0;
 
  return (
         <div className="layout">
@@ -77,8 +83,46 @@ const handleLogout = () => {
                 </div>
             </aside>
             <main className="main-content">
-                <h2>Metas</h2>
-                <p>aaaaaaaaaaaaaaa</p>
+                <div className='metas-header'>
+                <div>
+                <h2>Metas e Evolução</h2>
+                <p>Acompanhe seu progresso na escrita!</p>
+                </div>
+                </div>
+
+                <div className='status-grid'>
+                    <div className='status-card'>
+                        <div className='status-icon media'>
+                            <Trophy size={24} />
+                        </div>
+                        <div className='status-info'>
+                            <span className='status-label'>Média Geral: </span>
+                            <span className='status-value'>{mediaNotas}</span>
+                        </div>
+                    </div>
+
+                    <div className='status-card'>
+                        <div className='status-icon ultima'>
+                            <PencilLine size={24} />
+                        </div>
+                        <div className='status-info'>
+                            <span className='status-label'>Última Nota: </span>
+                            <span className='status-value'>{ultimaNota}</span>
+                        </div>
+                    </div>
+
+                    <div className='status-card'>
+                        <div className='status-icon total'>
+                            <CheckCheck size={24} />
+                        </div>
+                        <div className='status-info'>
+                            <span className='status-label'>Redações Corrigidas: </span>
+                            <span className='status-value'>{redacoesCorrigidas.length}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <Grafico redacoes={redacoes} />
             </main>
         </div>
     );
