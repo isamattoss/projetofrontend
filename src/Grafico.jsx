@@ -67,9 +67,9 @@ const Grafico = ({ redacoes }) => {
                                 label: function(context) { //nota: x pontos
                                     return `Nota: ${context.parsed.y} pontos`;
                                 },
-                                afterLabel: function(context) { //mostra o tema da redação (limitado a 60 caracteres)
+                                afterLabel: function(context) { //mostra o tema da redação
                                     const index = context.dataIndex;
-                                    return `Tema: ${redacoesCorrigidas[index].tema.substring(0, 60)}...`;
+                                    return `Tema: ${redacoesCorrigidas[index].tema}`;
                                 }
                             }
                         }
