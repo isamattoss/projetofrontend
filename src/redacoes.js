@@ -39,34 +39,34 @@ export const listaRedacoes = [
     "titulo": "O Amanhã que Plantamos: Equilíbrio Necessário",
     "tema": "2001: Desenvolvimento e preservação ambiental: como conciliar os interesses em conflito?",
     "status": "Corrigida",
-    "nota": 920
+    "nota": 720
   },
   {
     "id": 4,
     "titulo": "Raízes que o Brasil Esqueceu",
     "tema": "2024: Desafios para a valorização da herança africana no Brasil",
     "status": "Corrigida",
-    "nota": 880
+    "nota": 680
   },
   {
     "id": 3,
     "titulo": "Por Trás do Sorriso Invisível",
     "tema": "2020: O estigma associado às doenças mentais na sociedade brasileira",
     "status": "Corrigida",
-    "nota": 960
+    "nota": 620
   },
   {
     "id": 2,
     "titulo": "Sustentabilidade: O Caminho das Águas",
     "tema": "2008: Como preservar a floresta Amazônica: suspender a exploração ou encontrar alternativas sustentáveis?",
     "status": "Corrigida",
-    "nota": 740
+    "nota": 580
   },
   {
     "id": 1,
     "titulo": "O Direito de Existir e Circular",
     "tema": "2021: Invisibilidade e registro civil: garantia de acesso à cidadania no Brasil",
     "status": "Corrigida",
-    "nota": 820
+    "nota": 520
   }
 ]

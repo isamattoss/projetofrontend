@@ -5,25 +5,25 @@ import logo from './logo2.png';
 import { User, Home as HomeIcon, MessagesSquare, PencilLine, CheckCheck, BotMessageSquare, Bell, LogOut, Trophy } from 'lucide-react';
 import { listaRedacoes } from './redacoes';
 import Grafico from './grafico';
+import CardMeta from './CardMeta';
 
 const Metas = () => {
     const navigate = useNavigate();
-  
 
-const [perfil] = useState({ nome: "Teste Júnior" });
-const [redacoes] = useState(listaRedacoes || []);
+    const [perfil] = useState({ nome: "Teste Júnior" });
+    const [redacoes] = useState(listaRedacoes || []);
 
-const handleLogout = () => {
+    const handleLogout = () => {
         localStorage.removeItem('auth_token');
         navigate('/login');
     };
 
-const redacoesCorrigidas = redacoes.filter(r => r.status === 'Corrigida' && r.nota !== null);
-const mediaNotas = redacoesCorrigidas.length > 0 ? Math.round(redacoesCorrigidas.reduce((acc, r) => acc + r.nota, 0) / redacoesCorrigidas.length) : 0;
-const melhorNota = redacoesCorrigidas.length > 0 ? Math.max(...redacoesCorrigidas.map(r => r.nota)) : 0;
-const ultimaNota = redacoesCorrigidas.length > 0 ? redacoesCorrigidas.sort((a,b) => b.id - a.id)[0].nota : 0;
+    const redacoesCorrigidas = redacoes.filter(r => r.status === 'Corrigida' && r.nota !== null);//corrigidas
+    const mediaNotas = redacoesCorrigidas.length > 0 ? Math.round(redacoesCorrigidas.reduce((acc, r) => acc + r.nota, 0) / redacoesCorrigidas.length): 0;//media das redações
+    const melhorNota = redacoesCorrigidas.length > 0 ? Math.max(...redacoesCorrigidas.map(r => r.nota)) : 0;//melhor nota
+    const ultimaNota = redacoesCorrigidas.length > 0 ? [...redacoesCorrigidas].sort((a, b) => b.id - a.id)[0].nota : 0;//ordem
 
- return (
+    return (
         <div className="layout">
             <aside className="sidebar">
                 <div className="logo">
@@ -39,12 +39,10 @@ const ultimaNota = redacoesCorrigidas.length > 0 ? redacoesCorrigidas.sort((a,b)
                         <MessagesSquare size={20} />
                         <span>Grupos</span>
                     </div>
-                    <div>
                     <Link to="/escreva" className="item">
                         <PencilLine size={20} />
                         <span>Escreva</span>
                     </Link>
-                    </div>
                     <div className="item">
                         <CheckCheck size={20} />
                         <span>Revise</span>
@@ -82,47 +80,58 @@ const ultimaNota = redacoesCorrigidas.length > 0 ? redacoesCorrigidas.sort((a,b)
                     </div>
                 </div>
             </aside>
+
             <main className="main-content">
-                <div className='metas-header'>
-                <div>
-                <h2>Metas e Evolução</h2>
-                <p>Acompanhe seu progresso na escrita!</p>
-                </div>
+                <div className="metas-header">
+                    <div>
+                        <h2>Metas e Evolução</h2>
+                        <p>Lembre-se: Quanto mais exercitar, melhor será sua escrita!</p>
+                    </div>
                 </div>
 
-                <div className='status-grid'>
-                    <div className='status-card'>
-                        <div className='status-icon media'>
+               
+                <div className="status-grid">
+                    <div className="status-card">
+                        <div className="status-icon media">
                             <Trophy size={24} />
                         </div>
-                        <div className='status-info'>
-                            <span className='status-label'>Média Geral: </span>
-                            <span className='status-value'>{mediaNotas}</span>
+                        <div className="status-info">
+                            <span className="status-label">Média Geral</span>
+                            <span className="status-value">{mediaNotas}</span>
                         </div>
                     </div>
 
-                    <div className='status-card'>
-                        <div className='status-icon ultima'>
+                    <div className="status-card">
+                        <div className="status-icon ultima">
                             <PencilLine size={24} />
                         </div>
-                        <div className='status-info'>
-                            <span className='status-label'>Última Nota: </span>
-                            <span className='status-value'>{ultimaNota}</span>
+                        <div className="status-info">
+                            <span className="status-label">Última Nota</span>
+                            <span className="status-value">{ultimaNota}</span>
                         </div>
                     </div>
 
-                    <div className='status-card'>
-                        <div className='status-icon total'>
+                    <div className="status-card">
+                        <div className="status-icon total">
                             <CheckCheck size={24} />
                         </div>
-                        <div className='status-info'>
-                            <span className='status-label'>Redações Corrigidas: </span>
-                            <span className='status-value'>{redacoesCorrigidas.length}</span>
+                        <div className="status-info">
+                            <span className="status-label">Redações Corrigidas</span>
+                            <span className="status-value">{redacoesCorrigidas.length}</span>
                         </div>
                     </div>
                 </div>
 
-                <Grafico redacoes={redacoes} />
+                
+                 <div className="metas-bottom-grid"> {/* card metas */}
+                    <div className="meta-card-wrapper">
+                        <CardMeta notaAtual={mediaNotas} />
+                    </div>
+
+                    <div className="grafico-wrapper"> {/* gráfico de evolução */}
+                        <Grafico redacoes={redacoes} /> 
+                    </div>
+                </div>
             </main>
         </div>
     );
