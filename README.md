@@ -32,7 +32,7 @@ Mês 3: Dashboard de Evolução
 Foco: Retenção e gamificação.
 
 Entregáveis (Git):
-- [✅ ] Gráfico de Linha: Consumir a API para mostrar a evolução das notas nas últimas
+- [✅] Gráfico de Linha: Consumir a API para mostrar a evolução das notas nas últimas
 5 redações.
 - [✅ ] Card de Meta: Mostrar visualmente o quão longe ele está da nota de corte (Ex:
 Uma barra de progresso "850/900").
